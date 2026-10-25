@@ -1,0 +1,796 @@
+/* The Lost Tomb pitch deck: the site's palette and typefaces, set for projection. */
+
+@font-face {
+  font-family: 'Cinzel';
+  font-weight: 400 600;
+  src: url('{{font-cinzel}}') format('woff2');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 500;
+  src: url('{{font-cormorant}}') format('woff2');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-weight: 400;
+  src: url('{{font-garamond}}') format('woff2');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-weight: 500;
+  src: url('{{font-garamond-500}}') format('woff2');
+}
+
+:root {
+  --obsidian: #0a0907;
+  --tomb-brown: #1a120b;
+  --gold: #c7a04a;
+  --gold-hi: #e4c477;
+  --papyrus: #e8d3a5;
+  --muted: rgba(232, 211, 165, 0.72);
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+  background: #000;
+  color: var(--papyrus);
+  font-family: 'EB Garamond', Georgia, serif;
+  overflow: hidden;
+}
+img {
+  display: block;
+}
+:focus-visible {
+  outline: 2px solid var(--gold-hi);
+  outline-offset: 4px;
+}
+
+/* A 1920×1080 stage, scaled to fit any screen. */
+.viewport {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  /* Horizontal swipes change slides; pinch zoom still works. */
+  touch-action: pinch-zoom;
+}
+.stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1920px;
+  height: 1080px;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  background: var(--obsidian);
+  overflow: hidden;
+}
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: 110px 130px;
+  background:
+    radial-gradient(70% 60% at 50% 0%, rgba(199, 160, 74, 0.07), transparent 70%),
+    linear-gradient(180deg, var(--tomb-brown), var(--obsidian) 70%);
+  visibility: hidden;
+}
+.slide.is-active {
+  visibility: visible;
+}
+
+/* Type -------------------------------------------------------------------- */
+
+.kicker {
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 22px;
+}
+.h {
+  font-family: 'Cinzel', serif;
+  font-weight: 500;
+  font-size: 66px;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  color: var(--gold-hi);
+  text-wrap: balance;
+}
+.h--big {
+  font-size: 92px;
+}
+.centre {
+  text-align: center;
+}
+.lead {
+  margin-top: 26px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 1.2;
+}
+.points {
+  list-style: none;
+  margin-top: 40px;
+  display: grid;
+  gap: 22px;
+  font-size: 36px;
+  line-height: 1.35;
+}
+.points li {
+  position: relative;
+  padding-left: 40px;
+}
+.points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 16px;
+  height: 16px;
+  transform: rotate(45deg);
+  border: 2px solid var(--gold);
+}
+.foot {
+  position: absolute;
+  left: 130px;
+  right: 130px;
+  bottom: 70px;
+  font-size: 28px;
+  color: var(--muted);
+}
+.foot.centre {
+  text-align: center;
+}
+.rule {
+  height: 2px;
+  width: 360px;
+  margin: 26px auto;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform-origin: center;
+}
+.rule--left {
+  margin: 30px 0;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  transform-origin: left;
+}
+
+/* Title and final slides ---------------------------------------------------- */
+
+.s-title,
+.s-final {
+  text-align: center;
+  padding-top: 0;
+}
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(40% 50% at 50% 34%, rgba(228, 196, 119, 0.22), transparent 70%);
+}
+.title-mask {
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  width: 700px;
+  height: 700px;
+  margin-left: -350px;
+  object-fit: cover;
+}
+.s-title .kicker {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  right: 0;
+}
+.title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 712px;
+  font-family: 'Cinzel', serif;
+  font-weight: 500;
+  font-size: 128px;
+  letter-spacing: 0.2em;
+  padding-left: 0.2em;
+  line-height: 1;
+}
+.word {
+  display: inline-block;
+  white-space: nowrap;
+}
+.title .ch {
+  display: inline-block;
+  background: linear-gradient(180deg, #fff1c8 0%, #e4c477 45%, #a7792c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.s-title .rule,
+.s-final .rule {
+  position: absolute;
+  left: 50%;
+  top: 868px;
+  margin: 0 0 0 -180px;
+}
+.subtitle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 892px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 50px;
+}
+.team {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 54px;
+  font-size: 26px;
+  color: var(--muted);
+}
+.team__slot {
+  padding: 2px 14px;
+  border-bottom: 1px dashed rgba(199, 160, 74, 0.6);
+}
+
+/* Problem -------------------------------------------------------------------- */
+
+.s-problem {
+  display: grid;
+  grid-template-columns: 860px 1fr;
+  gap: 90px;
+  align-items: center;
+}
+.photo-frame img {
+  width: 860px;
+  height: 640px;
+  object-fit: cover;
+  filter: sepia(0.25) contrast(1.05);
+  box-shadow: 0 0 0 1px rgba(199, 160, 74, 0.4), 0 40px 90px rgba(0, 0, 0, 0.7);
+}
+.photo-frame figcaption,
+.archive figcaption {
+  margin-top: 16px;
+  font-size: 24px;
+  color: var(--muted);
+}
+
+/* Solution ------------------------------------------------------------------- */
+
+.s-solution {
+  display: grid;
+  grid-template-columns: 760px 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.screens {
+  position: relative;
+  height: 760px;
+}
+.desk {
+  position: absolute;
+  right: 0;
+  top: 80px;
+  width: 880px;
+  box-shadow: 0 0 0 1px rgba(199, 160, 74, 0.4), 0 40px 90px rgba(0, 0, 0, 0.75);
+}
+.desk img {
+  width: 100%;
+}
+.phone {
+  width: 300px;
+  padding: 10px;
+  border-radius: 46px;
+  background: linear-gradient(160deg, #2a2620, #0c0b09 40%, #1c1915);
+  box-shadow:
+    0 0 0 1.5px rgba(228, 196, 119, 0.35),
+    0 40px 100px rgba(0, 0, 0, 0.85);
+}
+.phone img {
+  width: 100%;
+  border-radius: 37px;
+}
+.phone--front {
+  position: absolute;
+  left: 0;
+  top: 120px;
+}
+
+/* How it works ---------------------------------------------------------------- */
+
+.s-how {
+  padding-top: 230px;
+}
+.s-how .h {
+  margin-bottom: 110px;
+}
+.flow-wrap {
+  position: relative;
+}
+.flow {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+.flow li {
+  text-align: center;
+}
+.flow__n {
+  display: grid;
+  place-items: center;
+  height: 150px;
+  width: 150px;
+  margin: 0 auto 34px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: radial-gradient(circle, rgba(199, 160, 74, 0.18), var(--obsidian) 70%);
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  color: var(--gold-hi);
+  padding: 0 14px;
+  line-height: 1.2;
+}
+.flow p {
+  font-size: 30px;
+  line-height: 1.35;
+}
+.flow__line {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 74px;
+  height: 2px;
+  background: rgba(199, 160, 74, 0.2);
+}
+.flow__line i {
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform-origin: left;
+}
+
+/* Journey -------------------------------------------------------------------- */
+
+.stages {
+  list-style: none;
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 26px;
+}
+.stages figure {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: 0 0 0 1px rgba(199, 160, 74, 0.35);
+}
+.stages img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* A timeline under the chapters: each segment runs on to the next one. */
+.stages .node {
+  position: relative;
+  display: block;
+  height: 2px;
+  margin-top: 30px;
+  width: calc(100% + 26px);
+  background: linear-gradient(90deg, var(--gold), rgba(199, 160, 74, 0.35));
+  transform-origin: left;
+}
+.stages li:last-child .node {
+  width: 100%;
+}
+.stages .node::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -7px;
+  width: 12px;
+  height: 12px;
+  transform: rotate(45deg);
+  border: 2px solid var(--gold-hi);
+  background: var(--obsidian);
+}
+.stages h3 {
+  margin-top: 24px;
+  font-family: 'Cinzel', serif;
+  font-weight: 500;
+  font-size: 30px;
+  color: var(--gold-hi);
+}
+.stages p {
+  margin-top: 8px;
+  font-size: 25px;
+  line-height: 1.3;
+  color: var(--muted);
+}
+
+/* History -------------------------------------------------------------------- */
+
+.s-history {
+  display: grid;
+  grid-template-columns: 720px 1fr;
+  gap: 70px;
+  align-items: center;
+}
+.s-history .points {
+  font-size: 31px;
+}
+.archive {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 320px;
+  gap: 18px;
+}
+.archive figure {
+  position: relative;
+  overflow: hidden;
+  grid-column: span 2;
+}
+.archive figure:nth-child(-n + 2) {
+  grid-column: span 3;
+}
+.archive img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.25) contrast(1.05);
+}
+.archive figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 30px 14px 10px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: var(--papyrus);
+}
+
+/* Artifacts ------------------------------------------------------------------ */
+
+.cards {
+  margin-top: 46px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+.card {
+  background: radial-gradient(circle at 50% 40%, rgba(199, 160, 74, 0.14), rgba(10, 9, 7, 0.9) 70%);
+  box-shadow: 0 0 0 1px rgba(199, 160, 74, 0.3);
+  overflow: hidden;
+}
+.card img {
+  width: 100%;
+  aspect-ratio: 6 / 5;
+  object-fit: cover;
+}
+.card figcaption {
+  padding: 18px 22px 22px;
+  font-size: 24px;
+  color: var(--muted);
+}
+.card b {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-weight: 500;
+  font-size: 26px;
+  color: var(--gold-hi);
+  margin-bottom: 6px;
+}
+.chips {
+  list-style: none;
+  margin-top: 34px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.chips li {
+  padding: 9px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(199, 160, 74, 0.5);
+  font-size: 24px;
+}
+.s-artifacts .foot {
+  bottom: 54px;
+}
+
+/* Mobile --------------------------------------------------------------------- */
+
+.s-mobile {
+  display: grid;
+  grid-template-columns: 1000px 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.phones {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+.phones .phone {
+  width: 300px;
+}
+.phone--lift {
+  transform: translateY(-40px);
+}
+
+/* Technology ----------------------------------------------------------------- */
+
+.tech {
+  list-style: none;
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.tech li {
+  padding: 30px 30px 28px;
+  background: rgba(199, 160, 74, 0.07);
+  box-shadow: inset 0 0 0 1px rgba(199, 160, 74, 0.3);
+}
+.tech b {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-weight: 500;
+  font-size: 34px;
+  color: var(--gold-hi);
+}
+.tech span {
+  display: block;
+  margin-top: 8px;
+  font-size: 25px;
+  color: var(--muted);
+}
+.pipeline {
+  margin-top: 96px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 36px;
+}
+.pipeline i {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), rgba(199, 160, 74, 0.2));
+}
+
+/* Why it matters --------------------------------------------------------------- */
+
+.s-why {
+  padding-top: 150px;
+}
+.why-bg {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 820px;
+  height: 600px;
+  margin-left: -410px;
+  opacity: 0.4;
+}
+.s-why .kicker,
+.s-why .h,
+.s-why .benefits {
+  position: relative;
+}
+.s-why .foot {
+  color: var(--papyrus);
+}
+.benefits {
+  list-style: none;
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+}
+.benefits li {
+  padding-top: 30px;
+  border-top: 2px solid var(--gold);
+  font-size: 29px;
+  line-height: 1.35;
+}
+.benefits b {
+  display: block;
+  margin-bottom: 14px;
+  font-family: 'Cinzel', serif;
+  font-weight: 500;
+  font-size: 30px;
+  color: var(--gold-hi);
+}
+
+/* Live ----------------------------------------------------------------------- */
+
+.s-live {
+  display: grid;
+  grid-template-columns: 700px 1fr;
+  gap: 70px;
+  align-items: center;
+}
+.h--live {
+  font-size: 78px;
+  letter-spacing: 0.08em;
+}
+.h--live .ch {
+  display: inline-block;
+}
+.button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 26px 46px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #1a1206;
+  font-family: 'Cinzel', serif;
+  font-size: 30px;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  transition: transform 0.16s var(--ease), background 0.2s;
+}
+.button:hover {
+  background: var(--gold-hi);
+}
+.button:active {
+  transform: scale(0.97);
+}
+.note {
+  margin-top: 26px;
+  font-size: 26px;
+  color: var(--muted);
+}
+code {
+  font-family: Consolas, monospace;
+  color: var(--papyrus);
+}
+.video-frame video,
+.video-frame img {
+  width: 100%;
+  display: block;
+  background: #000;
+  box-shadow: 0 0 0 1px rgba(199, 160, 74, 0.4), 0 40px 90px rgba(0, 0, 0, 0.75);
+}
+
+figcaption.video-missing {
+  margin-top: 14px;
+  font-size: 24px;
+  color: var(--gold-hi);
+}
+
+/* Speaker notes (N) ---------------------------------------------------------- */
+
+.notes {
+  position: fixed;
+  left: 22px;
+  bottom: 18px;
+  z-index: 6;
+  max-width: min(760px, calc(100vw - 260px));
+  max-height: 40vh;
+  overflow: auto;
+  padding: 18px 22px;
+  border-radius: 10px;
+  background: rgba(10, 9, 7, 0.92);
+  box-shadow: 0 0 0 1px rgba(199, 160, 74, 0.4);
+  font-size: 19px;
+  line-height: 1.45;
+}
+
+/* Controls ------------------------------------------------------------------- */
+
+.controls {
+  position: fixed;
+  right: 22px;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 5;
+  opacity: 0.35;
+  transition: opacity 0.3s;
+}
+.controls:hover,
+.controls:focus-within {
+  opacity: 1;
+}
+.ctl {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(199, 160, 74, 0.5);
+  background: rgba(10, 9, 7, 0.7);
+  color: var(--gold-hi);
+  font-size: 26px;
+  cursor: pointer;
+  transition: transform 0.16s var(--ease);
+}
+.ctl:active {
+  transform: scale(0.94);
+}
+.counter {
+  font-size: 18px;
+  color: var(--muted);
+  min-width: 64px;
+  text-align: center;
+}
+.progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  z-index: 5;
+}
+.progress i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--gold);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.5s var(--ease);
+}
+
+/* Print / PDF: every slide on its own page, at its final state. */
+.print,
+.print body {
+  height: auto;
+  overflow: visible;
+}
+.print .viewport {
+  position: static;
+  overflow: visible;
+}
+.print .stage {
+  position: static;
+  background: none;
+  height: auto;
+  transform: none !important;
+  overflow: visible;
+}
+.print .slide {
+  position: relative;
+  visibility: visible;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  break-after: page;
+}
+/* One gradient across the whole title: per-letter text clipping prints with seams. */
+.print .title {
+  background: linear-gradient(180deg, #fff1c8 0%, #e4c477 45%, #a7792c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.print .title .ch {
+  background: none;
+}
+.print .controls,
+.print .progress,
+.print .notes {
+  display: none;
+}
+@page {
+  size: 1920px 1080px;
+  margin: 0;
+}

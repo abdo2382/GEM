@@ -1,0 +1,9 @@
+{
+  "name": "the-lost-tomb-perf",
+  "private": true,
+  "type": "module",
+  "description": "Phone performance profiling for The Lost Tomb (production builds, Android emulation). Separate from the site.",
+  "devDependencies": {
+    "playwright-core": "1.55.0"
+  }
+}

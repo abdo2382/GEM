@@ -1,0 +1,14 @@
+{
+  "name": "the-lost-tomb-pitch",
+  "private": true,
+  "type": "module",
+  "description": "Pitch deck for The Lost Tomb. Separate from the site: nothing here is imported by the app.",
+  "scripts": {
+    "build": "node build.mjs",
+    "export": "node export.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "1.55.0",
+    "pptxgenjs": "3.12.0"
+  }
+}

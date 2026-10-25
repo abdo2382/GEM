@@ -1,0 +1,14 @@
+{
+  "name": "the-lost-tomb-promo",
+  "private": true,
+  "type": "module",
+  "description": "Production tooling for the promo video: drives the real site in Chrome and encodes the MP4. Separate from the app.",
+  "scripts": {
+    "capture": "node capture.mjs",
+    "render": "node render.mjs"
+  },
+  "devDependencies": {
+    "ffmpeg-static": "^5.2.0",
+    "playwright-core": "^1.55.0"
+  }
+}

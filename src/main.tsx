@@ -1,32 +1,20 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import '@fontsource/cinzel/400.css'
-import '@fontsource/cinzel/600.css'
-import '@fontsource/cormorant-garamond/500.css'
-import '@fontsource/cormorant-garamond/500-italic.css'
-import '@fontsource/eb-garamond/400.css'
-import '@fontsource/eb-garamond/500.css'
-import '@fontsource/amiri/400.css'
-import '@fontsource/amiri/700.css'
-import '@fontsource/reem-kufi/500.css'
-import '@fontsource/reem-kufi/600.css'
-import '@fontsource/noto-sans-egyptian-hieroglyphs/400.css'
-import 'lenis/dist/lenis.css'
-import './styles/global.css'
-import './styles/papyrus.css'
-import './styles/panels.css'
-import App from './App'
-import { useJourney } from './state/store'
+import { resolvePage } from './site/route'
 
-// CSS keys its cheaper rules (no frosted glass) to the quality tier.
-document.documentElement.dataset.quality = useJourney.getState().quality
-// The journey always begins at the top of the tomb.
-if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
-// Studio mode: the mask alone, without interface, for reference and presentation shots.
-if (new URLSearchParams(location.search).has('studio')) document.documentElement.classList.add('studio')
+// Three pages share one build but not one page load: the homepage, the museum map and the
+// experience each load only their own code and styles (see site/route.ts).
+const target = resolvePage(location.pathname, location.search)
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+if ('redirect' in target) {
+  location.replace(target.redirect + location.hash)
+} else {
+  const entries = {
+    home: () => import('./entry/home'),
+    'museum-map': () => import('./entry/museumMap'),
+    'lost-tomb': () => import('./entry/lostTomb'),
+  }
+  entries[target.page]().catch(() => {
+    // A failed download (offline, or a stale tab after an update): say so, in both languages.
+    const root = document.getElementById('root')
+    if (root) root.textContent = 'This page could not load. Check your connection and reload. · تعذّر تحميل الصفحة. تحقق من الاتصال ثم أعد التحميل.'
+  })
+}

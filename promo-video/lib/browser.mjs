@@ -3,7 +3,7 @@
 import { chromium } from 'playwright-core'
 
 export const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe'
-export const SITE = process.env.SITE ?? 'http://localhost:5173/'
+export const SITE = process.env.SITE ?? 'http://localhost:5173/lost-tomb'
 export const FPS = 30
 export const FRAME_MS = 1000 / FPS
 

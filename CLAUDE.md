@@ -107,3 +107,15 @@ performance win.
 
 3D modelling, shaders and photo projection fall outside these skills; use the studio
 view and `.shots/` comparisons instead.
+
+## Pages and the museum map
+
+- Three pages, three page loads (`site/route.ts`, `entry/*`): `/` homepage, `/museum-map`, `/lost-tomb` (the
+  experience, loaded exactly as before). Links between them are plain links built with `pageHref`, which carries
+  the language. Old root links with experience-only parameters redirect to `/lost-tomb`.
+- The museum map lives in `src/museum-map/` (read its README). Its data is generated from OpenStreetMap by
+  `scripts/gem-map/`; never invent where anything is inside the Main Building, never copy GEM's map image, keep the
+  OpenStreetMap credit, and keep `match: "approximate"` places flagged.
+- Pure map logic is test-first (`geo`, `astar`, `directions`, `describe`, `camera`, `labels`, `scene3d`,
+  `mapUrl`, `museumData`). The 3D view is its own chunk and renders on demand.
+- The perf and promo scripts now open `/lost-tomb`. The exported deck still links to the root, which is now the homepage.

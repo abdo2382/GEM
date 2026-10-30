@@ -1,0 +1,76 @@
+/* Shared by the homepage and the museum map. The experience keeps its own styles (styles/global.css);
+   the palette below is the same one, so the three pages read as one place. */
+:root {
+  /* The exhibition palette: obsidian and tomb brown grounds, antique gold for what matters,
+     papyrus cream for reading. */
+  --obsidian: #0a0907;
+  --tomb-brown: #1a120b;
+  --gold: #c7a04a;
+  --gold-hi: #e4c477;
+  --papyrus: #e8d3a5;
+  --parchment: #cdb486;
+  --sandstone: #8c7252;
+  --dark-bronze: #544021;
+  /* Small labels on dark ground: comfortably past 4.5:1. */
+  --sand: #b99d70;
+  --ivory: #f3e8d0;
+  --bronze: #49351f;
+  --line: rgba(212, 175, 55, 0.28);
+  /* One more colour, used for nothing but "your walk": the blue-green of Egyptian faience. */
+  --faience: #3fd0c0;
+  --malachite: #19322a;
+  --lapis: #17384a;
+  --font-display: 'Cinzel', 'Times New Roman', serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'EB Garamond', Georgia, serif;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--obsidian);
+  color: var(--ivory);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-variant-numeric: lining-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+html[dir='rtl'] body {
+  font-family: 'Amiri', var(--font-body);
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--faience);
+  outline-offset: 2px;
+}
+
+button {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

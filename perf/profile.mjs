@@ -28,7 +28,7 @@ const server = createServer((req, res) => {
   createReadStream(p).pipe(res)
 })
 await new Promise((r) => server.listen(0, '127.0.0.1', r))
-const url = `http://127.0.0.1:${server.address().port}/${query}`
+const url = `http://127.0.0.1:${server.address().port}/lost-tomb${query}`
 
 const UA = 'Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Mobile Safari/537.36'
 const pct = (a, p) => a.length ? a.slice().sort((x, y) => x - y)[Math.min(a.length - 1, Math.floor((p / 100) * a.length))] : 0

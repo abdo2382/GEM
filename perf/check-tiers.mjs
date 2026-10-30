@@ -17,7 +17,7 @@ async function open(query) {
   const errors = []
   page.on('pageerror', (e) => errors.push(e.message))
   const t0 = Date.now()
-  await page.goto('http://localhost:5173/' + query, { timeout: 180000 })
+  await page.goto('http://localhost:5173/lost-tomb' + query, { timeout: 180000 })
   await page.waitForSelector('.gate .btn--gold', { state: 'visible', timeout: 180000 })
   const ready = Date.now() - t0
   await page.tap('.gate .btn--gold')

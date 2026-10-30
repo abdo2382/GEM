@@ -20,7 +20,7 @@ async function open(query = '', opts = {}) {
   return { ctx, page, errors }
 }
 async function start(page, query = '') {
-  await page.goto('http://localhost:5173/' + query, { timeout: 180000 })
+  await page.goto('http://localhost:5173/lost-tomb' + query, { timeout: 180000 })
   await page.waitForSelector('.gate .btn--gold', { state: 'visible', timeout: 180000 })
   await page.tap('.gate .btn--gold')
   await page.waitForFunction(() => window.__lt && window.__r3f, null, { timeout: 60000 })
@@ -148,7 +148,7 @@ async function start(page, query = '') {
 {
   const { ctx, page } = await open()
   await page.route(/\/src\/three\/Stage\.tsx/, (r) => r.abort())
-  await page.goto('http://localhost:5173/', { timeout: 180000 })
+  await page.goto('http://localhost:5173/lost-tomb', { timeout: 180000 })
   await page.waitForTimeout(8000)
   const fb = await page.evaluate(() => !!document.querySelector('.fallback'))
   check('failed 3D download: story edition shown', fb)

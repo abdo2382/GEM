@@ -1,0 +1,363 @@
+/* The homepage: two doors in the dark. */
+
+.home {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(90% 55% at 50% -8%, rgba(199, 160, 74, 0.14), transparent 70%),
+    var(--obsidian);
+}
+
+.home__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px clamp(16px, 4vw, 48px);
+}
+
+.home__brand {
+  font: 600 1.05rem/1 var(--font-display);
+  letter-spacing: 0.16em;
+  color: var(--gold-hi);
+}
+
+html[dir='rtl'] .home__brand {
+  font-family: 'Reem Kufi', 'Amiri', serif;
+  font-size: 1.3rem;
+  letter-spacing: 0;
+}
+
+.site-chip {
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--parchment);
+  cursor: pointer;
+}
+
+.site-chip:hover {
+  border-color: var(--gold);
+  color: var(--gold-hi);
+}
+
+.site-chip[lang='ar'] {
+  font-family: 'Amiri', serif;
+  font-size: 1.15rem;
+}
+
+.home__main {
+  flex: 1;
+  width: min(1160px, 100%);
+  margin-inline: auto;
+  padding: clamp(4px, 2vh, 24px) clamp(16px, 4vw, 48px) clamp(20px, 4vh, 40px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home h1 {
+  margin: clamp(8px, 2vh, 20px) 0 0.5rem;
+  font: italic 500 clamp(2.1rem, 5.4vw, 3.7rem) / 1.08 var(--font-serif);
+  text-align: center;
+  text-wrap: balance;
+  color: var(--ivory);
+}
+
+html[dir='rtl'] .home h1 {
+  font: 700 clamp(2rem, 5vw, 3.3rem) / 1.35 'Amiri', serif;
+}
+
+.home__lede {
+  max-width: 34rem;
+  margin: 0 0 clamp(18px, 4vh, 36px);
+  text-align: center;
+  text-wrap: balance;
+  color: var(--sand);
+  font-size: 1.15rem;
+}
+
+.home__doors {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(14px, 3vw, 36px);
+}
+
+/* A door is one big link. Its top is an arch, like the niche of a stele. */
+.door {
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-height: clamp(400px, 58vh, 660px);
+  border: 1px solid var(--line);
+  border-radius: 50% 50% 16px 16px / 24% 24% 16px 16px;
+  overflow: hidden;
+  background: var(--tomb-brown);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    border-color 0.3s,
+    transform 0.4s var(--ease-out),
+    box-shadow 0.4s;
+}
+
+.door:hover,
+.door:focus-visible {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(199, 160, 74, 0.25);
+}
+
+.door:focus-visible {
+  outline: 3px solid var(--faience);
+  outline-offset: 4px;
+}
+
+/* The picture takes whatever height the words leave, so they can never overlap. */
+.door__view {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.door__view::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 38%;
+  background: linear-gradient(to top, #0a0907, rgba(10, 9, 7, 0));
+  pointer-events: none;
+}
+
+.door__text {
+  position: relative;
+  padding: 0.4rem 1.6rem 1.6rem;
+  text-align: center;
+  background: #0a0907;
+}
+
+.door h2 {
+  margin: 0 0 0.4rem;
+  font: 600 clamp(1.15rem, 2.2vw, 1.55rem) / 1.2 var(--font-display);
+  letter-spacing: 0.06em;
+  color: var(--gold-hi);
+}
+
+html[dir='rtl'] .door h2 {
+  font-family: 'Reem Kufi', 'Amiri', serif;
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  letter-spacing: 0;
+}
+
+.door p {
+  max-width: 28rem;
+  margin: 0 auto 1rem;
+  color: var(--parchment);
+  font-size: 1.1rem;
+  text-wrap: balance;
+}
+
+.door__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0 1.3rem;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  color: var(--gold-hi);
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+
+.door:hover .door__go,
+.door:focus-visible .door__go {
+  background: var(--gold);
+  color: var(--obsidian);
+}
+
+html[dir='rtl'] .door__chevron {
+  transform: scaleX(-1);
+}
+
+/* The map door: the real outlines, and one real walk drawing itself. Lengths are in map metres. */
+.home-map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #0d0b08;
+}
+
+.home-map path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.home-map__greens {
+  fill: var(--malachite);
+}
+
+.home-map__buildings {
+  fill: #2f2518;
+  stroke: #5d4b2c;
+  stroke-width: 1.6;
+}
+
+.home-map__walls {
+  fill: none;
+  stroke: #4a3d2a;
+  stroke-width: 1.8;
+}
+
+.home-map__places {
+  fill: #6a5226;
+  stroke: var(--gold);
+  stroke-width: 2.2;
+}
+
+.home-map__main {
+  fill: #8a6a2c;
+  stroke: var(--gold-hi);
+  stroke-width: 2.6;
+}
+
+.home-map__halo {
+  fill: none;
+  stroke: var(--faience);
+  stroke-opacity: 0.2;
+  stroke-width: 24;
+}
+
+.home-map__route {
+  fill: none;
+  stroke: var(--faience);
+  stroke-width: 9;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: home-draw 2.8s var(--ease-out) 0.6s forwards;
+}
+
+.home-map__dot {
+  fill: var(--gold-hi);
+  stroke: var(--obsidian);
+  stroke-width: 3;
+}
+
+@keyframes home-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* The mask door: the approved mask, as it is in the experience. */
+.door--tomb .door__view img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 10%;
+}
+
+.door--tomb .door__view::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(75% 60% at 50% 42%, transparent 52%, rgba(10, 9, 7, 0.72) 100%);
+}
+
+.door__credit {
+  position: absolute;
+  z-index: 1;
+  inset-inline-start: 50%;
+  inset-block-end: 12px;
+  transform: translateX(-50%);
+  padding: 1px 10px 3px;
+  border-radius: 999px;
+  background: rgba(10, 9, 7, 0.7);
+  color: var(--sand);
+  font-size: 0.86rem;
+  white-space: nowrap;
+}
+
+html[dir='rtl'] .door__credit {
+  transform: translateX(50%);
+}
+
+.home__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 6px clamp(16px, 4vw, 48px) 18px;
+  color: var(--sand);
+  font-size: 0.93rem;
+  text-align: center;
+}
+
+.home__foot a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--parchment);
+  text-underline-offset: 3px;
+}
+
+/* A short laptop screen: everything still fits without scrolling. */
+@media (max-height: 780px) and (min-aspect-ratio: 85/100) {
+  .home h1 {
+    font-size: clamp(1.9rem, 4.2vw, 2.7rem);
+  }
+
+  .home__lede {
+    margin-bottom: 16px;
+    font-size: 1.05rem;
+  }
+
+  .door {
+    min-height: 400px;
+  }
+
+  .door p {
+    margin-bottom: 0.7rem;
+  }
+
+  .door__text {
+    padding-bottom: 1.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-map__route {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .door:hover,
+  .door:focus-visible {
+    transform: none;
+  }
+}
+
+/* One column on a phone, with the same rule as everywhere else. */
+@media (max-width: 759.98px), (max-aspect-ratio: 85/100) {
+  .home__doors {
+    grid-template-columns: 1fr;
+  }
+
+  .door {
+    min-height: 470px;
+  }
+
+  .home h1 {
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
+  }
+}

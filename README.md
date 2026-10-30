@@ -92,3 +92,15 @@ src/
 ```
 
 Not an official Grand Egyptian Museum product.
+
+## Pages and the museum map
+
+| Address | What it is |
+|---|---|
+| `/` | The homepage: two ways in |
+| `/museum-map` | The museum map: walks between places, on a plan or in 3D (`src/museum-map/README.md`) |
+| `/lost-tomb` | The scroll-driven experience, unchanged. Old links such as `/?autostart` move here |
+
+Each page is its own page load, so the experience's styles and audio never reach the other two. Hosts need a
+fallback to `index.html` for these paths (`vercel.json` does it for Vercel). The map takes `?from=`, `?to=`,
+`?free=1` (avoid steps) and `?view=3d`.

@@ -113,6 +113,9 @@ view and `.shots/` comparisons instead.
 - Three pages, three page loads (`site/route.ts`, `entry/*`): `/` homepage, `/museum-map`, `/lost-tomb` (the
   experience, loaded exactly as before). Links between them are plain links built with `pageHref`, which carries
   the language. Old root links with experience-only parameters redirect to `/lost-tomb`.
+- `vite build` writes `dist/museum-map/index.html` and `dist/lost-tomb/index.html`, copies of `index.html`
+  (`scripts/pageFolders.ts`, tested), so a host with no rewrite rules still opens every page. Without them only the
+  homepage opened there. A new page needs only its entry in `PAGE_PATH`; `vercel.json` stays as a fallback.
 - The museum map lives in `src/museum-map/` (read its README). Its data is generated from OpenStreetMap by
   `scripts/gem-map/`; never invent where anything is inside the Main Building, never copy GEM's map image, keep the
   OpenStreetMap credit, and keep `match: "approximate"` places flagged.

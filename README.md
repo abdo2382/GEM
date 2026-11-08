@@ -101,6 +101,7 @@ Not an official Grand Egyptian Museum product.
 | `/museum-map` | The museum map: walks between places, on a plan or in 3D (`src/museum-map/README.md`) |
 | `/lost-tomb` | The scroll-driven experience, unchanged. Old links such as `/?autostart` move here |
 
-Each page is its own page load, so the experience's styles and audio never reach the other two. Hosts need a
-fallback to `index.html` for these paths (`vercel.json` does it for Vercel). The map takes `?from=`, `?to=`,
-`?free=1` (avoid steps) and `?view=3d`.
+Each page is its own page load, so the experience's styles and audio never reach the other two. The build also
+writes a copy of `index.html` into `dist/museum-map/` and `dist/lost-tomb/` (`scripts/pageFolders.ts`), so any static
+host opens all three pages with no rewrite rules; `vercel.json` still adds the fallback for Vercel. The map takes
+`?from=`, `?to=`, `?free=1` (avoid steps) and `?view=3d`.
